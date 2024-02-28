@@ -17,7 +17,7 @@ app.use('/login', (req, res) => {
   .then(Usuarios => {
     if(Usuarios){
       if (Usuarios.password === password) {
-        res.json("Completado");
+        res.json({ message: "Completado", user_id: Usuarios.user_id });
       } else {
         res.json({ message: 'contraseña invalida' });
       }
@@ -47,6 +47,19 @@ app.get('/videos/:videoId', (req, res) => {
     .catch(error => {
       console.error('Error fetching video', error);
       res.status(500).send('Error fetching video');
+    });
+});
+
+app.post('/videos', (req, res) => {
+  const video = new Video(req.body);
+
+  video.save()
+    .then(() => {
+      res.status(201).send('Video created successfully');
+    })
+    .catch(error => {
+      console.error('Error creating video:', error);
+      res.status(500).send('Error creating video');
     });
 });
 

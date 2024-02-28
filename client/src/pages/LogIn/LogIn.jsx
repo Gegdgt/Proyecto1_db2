@@ -13,8 +13,9 @@ function LogIn() {
     axios.post('http://localhost:5050/login', { username, password })
       .then(result => {
         console.log(result);
-        if (result.data === "Completado") {
+        if (result.data.message === "Completado") {
           localStorage.setItem('username', username);
+          localStorage.setItem('user_id', result.data.user_id);
           console.log(username);
           navigate('/');
         }

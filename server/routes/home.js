@@ -4,9 +4,13 @@ const VideoSchema = new mongoose.Schema({
     video_id: Number,
     name: String,
     duration: Number, // Duration in seconds
+    views: Number,
     creator_id: Number, // Reference to the creator's ID in the Usuarios collection
     creation_date: String,
-    Comments: [{
+    tags: [{
+        tag: String
+    }],
+    comments: [{
         user: String,
         date: String,
         comment_text: String
