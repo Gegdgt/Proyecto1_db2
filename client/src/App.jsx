@@ -8,6 +8,7 @@ import Playlist from './pages/Playlist/Playlist.jsx';
 import Navbar from './components/Navbar.jsx';
 import LogIn from './pages/LogIn/LogIn.jsx';
 import SignIn from './pages/SignIn/SignIn.jsx';
+import Create from './pages/Create/Create.jsx';
 import './App.css';
 
 const App = () => {
@@ -20,9 +21,11 @@ const App = () => {
         <Routes>
           <Route path="/LogIn" element={<LogIn />} />
           <Route path="/SignIn" element={<SignIn />} />
+          <Route path="/Create" element={<Create />} />
           <Route path="/playlist" element={<Playlist />} />
           <Route path="/user" element={<User />} />
           <Route path="/video/:video_id" element={<Video />} />
+          <Route path="/video" element={<Video />} />
           <Route path="/" element={<Main />} />
         </Routes>
       </div>

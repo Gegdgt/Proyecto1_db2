@@ -12,6 +12,7 @@ function Navbar() {
       <div className="navbar-links">
         <a href="/playlist">Playlist</a>
         <a href="/user">Usuarios</a>
+        <a href="Create">Crear</a>
       </div>
     </div>
   );
