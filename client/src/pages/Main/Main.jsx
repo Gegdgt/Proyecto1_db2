@@ -4,14 +4,13 @@ import axios from 'axios';
 import './Main.css';
 import Maindefimage from '../../img/maindef.jpg';
 
-
 function Main() {
     const [videos, setVideos] = useState([]);
-    const [page, setPage] = useState(1); // Add page state
-    const pageSize = 10; // Set page size to 10
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        axios.get(`http://localhost:5050/videos?page=${page}&pageSize=${pageSize}`) // Add page and pageSize query parameters
+        const pageSize = 10;
+        axios.get(`http://localhost:5050/videos?page=${page}&pageSize=${pageSize}`)
             .then(response => {
                 const fetchedVideos = response.data;
                 const videosWithCreators = fetchedVideos.map(video => {
@@ -23,13 +22,13 @@ function Main() {
             .catch(error => {
                 console.error('Error fetching videos', error);
             });
-    }, [page]); // Add page to dependency array
+    }, [page]);
 
     return (
-        <div>
+        <div className="main-container">
             {videos.map(video => (
-                <div key={video._id}>
-                    <img className='Mini' src={video.imageUrl || Maindefimage} alt="Miniatura de video" />
+                <div key={video._id} className="video-card">
+                    <img className='miniature' src={video.imageUrl || Maindefimage} alt="Miniatura de video" />
                     <Link to={`/video/${video.video_id}`}>
                         <h3>{video.name}</h3>
                     </Link>
@@ -37,8 +36,10 @@ function Main() {
                     <p>Creator: {video.creatorName}</p>
                 </div>
             ))}
-            <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button> {/* Add Previous button */}
-            <button onClick={() => setPage(page + 1)}>Next</button> {/* Add Next button */}
+            <div className="pagination">
+                <button onClick={() => setPage(page - 1)} disabled={page === 1}>Previous</button>
+                <button onClick={() => setPage(page + 1)}>Next</button>
+            </div>
         </div>
     );
 }

@@ -11,6 +11,12 @@
     width: 100%;
 }
 
+.miniature {
+    width: 100%;
+    max-height: 200px; /* Ajusta el tamaño máximo según lo necesites */
+    object-fit: cover;
+}
+
 .video-card-content {
     padding: 20px;
 }
