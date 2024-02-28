@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import videodefimage from '../../img/videodef.jpg';
 
 function Video() {
   const { video_id } = useParams();
@@ -24,6 +25,7 @@ function Video() {
 
   return (
     <div>
+      <img className='Mini' src={video.imageUrl || videodefimage} alt="Miniatura de video" />
       <h1>{video.name}</h1>
       <p>Duration: {video.duration} minutes</p>
       <p>Creation date: {new Date(video.creation_date).toLocaleDateString()}</p>

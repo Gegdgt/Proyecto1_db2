@@ -36,7 +36,7 @@ app.use('/signin', (req, res) => {
 app.get('/videos/:videoId', (req, res) => {
   const videoId = req.params.videoId;
 
-  Video.findOne(videoId)
+  Video.findOne({ video_id: videoId })
     .then(video => {
       if (!video) {
         return res.status(404).send('Video not found');
