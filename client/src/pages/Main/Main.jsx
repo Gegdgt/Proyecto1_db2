@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Main.css';
+import Maindefimage from '../../img/maindef.jpg';
+
 
 function Main() {
     const [videos, setVideos] = useState([]);
@@ -27,6 +29,7 @@ function Main() {
         <div>
             {videos.map(video => (
                 <div key={video._id}>
+                    <img className='Mini' src={video.imageUrl || Maindefimage} alt="Miniatura de video" />
                     <Link to={`/video/${video.video_id}`}>
                         <h3>{video.name}</h3>
                     </Link>
