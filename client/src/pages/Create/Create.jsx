@@ -12,16 +12,13 @@ function Create() {
         event.preventDefault();
 
         const creation_date = new Date().toISOString();
-        console.log(localStorage);
         const creator_id = localStorage.getItem('user_id');
         const video_id = Math.floor(Math.random() * (99999999999999 - 10000000000000 + 1)) + 10000000000000;
 
         const video = { video_id, name, duration, views, url, creation_date, creator_id };
 
         try {
-            // Replace '/videos' with the correct endpoint to create a video
             await axios.post('http://localhost:5050/videos', video);
-            console.log(video);
             alert('Video created successfully');
         } catch (error) {
             console.error('Error creating video:', error);
@@ -30,7 +27,7 @@ function Create() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="create-form" onSubmit={handleSubmit}>
             <label>
                 Name:
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
