@@ -7,6 +7,7 @@ import Maindefimage from '../../img/maindef.jpg';
 function Main() {
     const [videos, setVideos] = useState([]);
     const [page, setPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const pageSize = 10;
@@ -24,9 +25,19 @@ function Main() {
             });
     }, [page]);
 
+    const filteredVideos = videos.filter(video =>
+        video.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <div className="main-container">
-            {videos.map(video => (
+            <input className="buscar"
+                type="text"
+                placeholder="Buscar..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {filteredVideos.map(video => (
                 <div key={video._id} className="video-card">
                     <img className='miniature' src={video.imageUrl || Maindefimage} alt="Miniatura de video" />
                     <Link to={`/video/${video.video_id}`}>
